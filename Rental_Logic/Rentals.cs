@@ -74,8 +74,8 @@ namespace Rental_Logic
             Bookings.Add(newBooking);
         }
 
-        public void DeleteBooking(string bookingId)
-        {
+        public void RemoveBooking(string bookingId)
+        { 
             Bookings.RemoveAll(b => b.Id == bookingId);
         }
 
