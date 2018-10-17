@@ -11,6 +11,7 @@ namespace Rental_Logic
         public List<Customer> Customers = new List<Customer>();
         public List<Booking> Bookings = new List<Booking>();
         
+   
         public void AddCar(int regNumber, string brand, int year, string model)
         {
             Car newCar = new Car() {
@@ -22,12 +23,10 @@ namespace Rental_Logic
             };
             Cars.Add(newCar);
         }
-
         public void RemoveCar(int regNumber)
         {
             Cars.RemoveAll(b => b.RegNumber == regNumber);
         }
-
         public void AddCustomer(string firstName, string lastName, string phoneNumber, string emailAddress)
         {
             Customer newCustomer = new Customer()
@@ -38,25 +37,18 @@ namespace Rental_Logic
                 EmailAddress = emailAddress
 
             };
+            Customers.Add(newCustomer);
         }
-
-        public void EditCustomer(Customer customer)
-        { 
-            foreach (var cust in Customers.Where(c => c.Id == customer.Id))
-            {
-                cust.FirstName = customer.FirstName;
-                cust.LastName = customer.LastName;
-                cust.PhoneNumber = customer.PhoneNumber;
-                cust.EmailAddress = customer.EmailAddress;
-            }
-        }
-
         public void RemoveCustomer(string firstName, string lastName, int id)
         {
+
             Customers.RemoveAll(c => c.FirstName == firstName && c.LastName == lastName && c.Id == id);
+
         }
 
+
         public void AddBooking(Car rentalCar, Customer renter, DateTime startTime, DateTime endTime)
+
         {
             Booking newBooking = new Booking()
             {
@@ -66,13 +58,17 @@ namespace Rental_Logic
                 StartTime = startTime,
                 EndTime = endTime,
                 IsReturned = false
+
             };
             Bookings.Add(newBooking);
+
         }
 
         public void DeleteBooking(string bookingId)
         {
             Bookings.RemoveAll(b => b.Id == bookingId);
         }
+
     }
+
  }
