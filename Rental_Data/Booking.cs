@@ -9,6 +9,7 @@ namespace Rental_Data
         public Customer Renter { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
+        public DateTime Time { get; set; }        // DENNA KANSKE INTE BEHÖVS HAR DEN FÖR ATT KOLLA OM ENDTIME ÄR STÖRRE ÄN TIME
         public bool IsReturned { get; set; }
     }
 }

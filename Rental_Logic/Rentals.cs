@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Rental_Data;
+using System;
 using System.Collections.Generic;
-using Rental_Data;
-using System.Linq;
 
 namespace Rental_Logic
 {
@@ -10,11 +9,12 @@ namespace Rental_Logic
         public List<Car> Cars = new List<Car>();
         public List<Customer> Customers = new List<Customer>();
         public List<Booking> Bookings = new List<Booking>();
-        
-   
+
+
         public void AddCar(int regNumber, string brand, int year, string model)
         {
-            Car newCar = new Car() {
+            Car newCar = new Car()
+            {
                 RegNumber = regNumber,
                 Brand = brand,
                 Year = year,
@@ -65,6 +65,23 @@ namespace Rental_Logic
             Bookings.RemoveAll(b => b.Id == bookingId);
         }
 
+
+        public void ReturnCar(Booking booking)
+        {
+            if (booking.IsReturned == false && booking.RentalCar.IsRented == true)
+            {
+               booking.IsReturned = true;
+                booking.RentalCar.IsRented = false;
+            }
+
+            if(DateTime.Now < booking.EndTime)
+            {
+                booking.EndTime = DateTime.Now;
+
+
+            }
+        }
+
     }
 
- }
+}
