@@ -38,7 +38,17 @@ namespace Rental_Logic
                 EmailAddress = emailAddress
 
             };
-            Customers.Add(newCustomer);
+        }
+
+        public void EditCustomer(Customer customer)
+        { 
+            foreach (var cust in Customers.Where(c => c.Id == customer.Id))
+            {
+                cust.FirstName = customer.FirstName;
+                cust.LastName = customer.LastName;
+                cust.PhoneNumber = customer.PhoneNumber;
+                cust.EmailAddress = customer.EmailAddress;
+            }
         }
 
         public void RemoveCustomer(string firstName, string lastName, int id)
