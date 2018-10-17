@@ -1,15 +1,13 @@
-﻿using System;
-
-namespace ClassLibrary2
+﻿namespace ClassLibrary2
 {
     public class Car
     {
 
-        private int regNumber { get; set; }
-        private string brand { get; set; }
-        private int year { get; set; }
-        private string model { get; set; }
-        private string productionYear { get; set; }
+        private int Regnumber { get; set; }
+        private string Brand { get; set; }
+        private int Year { get; set; }
+        private string Model { get; set; }
+        private string ProductionYear { get; set; }
     }
 
 }
