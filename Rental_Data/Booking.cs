@@ -6,9 +6,9 @@ namespace Rental_Data
 {
     public class Booking
     {
-        Car RentalCar { get; set; }
-        Customer Renter { get; set; }
-        DateTime StartTime { get; set; }
-        DateTime EndTime { get; set; }
+        private Car RentalCar { get; set; }
+        private Customer Renter { get; set; }
+        private DateTime StartTime { get; set; }
+        private DateTime EndTime { get; set; }
     }
 }
