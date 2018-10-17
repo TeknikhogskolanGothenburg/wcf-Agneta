@@ -23,6 +23,10 @@ namespace Rental_Logic
             };
             Cars.Add(newCar);
         }
+        public void RemoveCar(int regNumber)
+        {
+            Cars.RemoveAll(b => b.RegNumber == regNumber);
+        }
         public void AddCustomer(string firstName, string lastName, string phoneNumber, string emailAddress)
         {
             Customer newCustomer = new Customer()
