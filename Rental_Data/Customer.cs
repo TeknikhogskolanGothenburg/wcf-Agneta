@@ -12,12 +12,12 @@ namespace Rental_Data
         public string PhoneNumber { get; set; }
         public string EmailAddress { get; set; }
 
-        public string FullName
-        {
-            get
-            {
-                return FirstName + " " + LastName;
-            }
-        }
+        //public string FullName                    //används inte
+        //{
+        //    get
+        //    {
+        //        return FirstName + " " + LastName;
+        //    }
+        //}
     }
 }

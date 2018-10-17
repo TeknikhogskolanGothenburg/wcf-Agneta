@@ -11,7 +11,7 @@ namespace Rental_Logic
         public List<Customer> Customers = new List<Customer>();
         public List<Booking> Bookings = new List<Booking>();
 
-        public void AddCar(int regNumber, string brand, int year, string model)
+        public void AddCar(string regNumber, string brand, int year, string model)
         {
             Car newCar = new Car()
             {
@@ -24,7 +24,7 @@ namespace Rental_Logic
             Cars.Add(newCar);
         }
 
-        public void RemoveCar(int regNumber)
+        public void RemoveCar(string regNumber)
         {
             Cars.RemoveAll(b => b.RegNumber == regNumber);
         }
@@ -62,12 +62,12 @@ namespace Rental_Logic
         {
             Booking newBooking = new Booking()
             {
-                Id = renter.FullName + renter.Id,
+                Id = renter.Id + rentalCar.RegNumber + startTime,    // för lite med bara namn och id. kunden kan återkomma med flera bokningar.
                 RentalCar = rentalCar,
                 Renter = renter,
                 StartTime = startTime,
                 EndTime = endTime,
-                IsReturned = false
+                IsReturned = false                              
 
             };
             Bookings.Add(newBooking);
@@ -78,9 +78,14 @@ namespace Rental_Logic
             Bookings.RemoveAll(b => b.Id == bookingId);
         }
 
+        public void GetCar(Booking booking)          // När kunden kvitterar ut sin hyrbil.
+        {
+            booking.RentalCar.IsRented = true;
+        }
+
         public void ReturnCar(Booking booking)
         {
-            if (booking.IsReturned == false && booking.RentalCar.IsRented == true)
+            if (booking.IsReturned == false && booking.RentalCar.IsRented == true)// IsRented sätts aldrig till True i koden. Behövs den alls? lägger till på rad 84
             {
                 booking.IsReturned = true;
                 booking.RentalCar.IsRented = false;
