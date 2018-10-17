@@ -8,5 +8,4 @@
         public string Model { get; set; }
         public bool IsRented { get; set; }
     }
-
 }

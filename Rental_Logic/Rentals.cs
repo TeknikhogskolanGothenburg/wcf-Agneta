@@ -92,5 +92,18 @@ namespace Rental_Logic
                 booking.EndTime = DateTime.Now;
             }
         }
+
+        public List<Car> CheckDate( DateTime startDate, DateTime endDate)
+        {
+            List<Car> availableCars = Cars.ToList();
+            foreach (var booking in Bookings)
+            {
+                if (startDate < booking.StartTime && endDate > booking.StartTime)
+                {
+                    availableCars.RemoveAll(b => b.RegNumber == booking.RentalCar.RegNumber);                 
+                }        
+            }
+            return availableCars;
+        }
     }
 }
