@@ -1,8 +1,7 @@
-﻿namespace ClassLibrary2
-{
+﻿namespace Rental_Data
+{ 
     public class Car
     {
-
         private int RegNumber { get; set; }
         private string Brand { get; set; }
         private int Year { get; set; }
