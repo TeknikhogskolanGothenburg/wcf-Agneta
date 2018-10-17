@@ -11,6 +11,7 @@ namespace Rental_Logic
         public List<Customer> Customers = new List<Customer>();
         public List<Booking> Bookings = new List<Booking>();
         
+   
         public void AddCar(int regNumber, string brand, int year, string model)
         {
             Car newCar = new Car() {
@@ -22,12 +23,6 @@ namespace Rental_Logic
             };
             Cars.Add(newCar);
         }
-
-        public void RemoveCar(int regNumber)
-        {
-            Cars.RemoveAll(c => c.RegNumber == regNumber);
-        }
-
         public void AddCustomer(string firstName, string lastName, string phoneNumber, string emailAddress)
         {
             Customer newCustomer = new Customer()
@@ -40,11 +35,13 @@ namespace Rental_Logic
             };
             Customers.Add(newCustomer);
         }
-
         public void RemoveCustomer(string firstName, string lastName, int id)
         {
+
             Customers.RemoveAll(c => c.FirstName == firstName && c.LastName == lastName && c.Id == id);
+
         }
+
 
         public void AddBooking(Car rentalCar, Customer renter, DateTime startTime, DateTime endTime)
 
@@ -60,11 +57,14 @@ namespace Rental_Logic
 
             };
             Bookings.Add(newBooking);
+
         }
 
         public void DeleteBooking(string bookingId)
         {
             Bookings.RemoveAll(b => b.Id == bookingId);
         }
+
     }
+
  }
