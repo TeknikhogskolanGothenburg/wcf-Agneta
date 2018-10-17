@@ -58,7 +58,6 @@ namespace Rental_Logic
             Customers.RemoveAll(c => c.FirstName == firstName && c.LastName == lastName && c.Id == id);
         }
 
-
         public void AddBooking(Car rentalCar, Customer renter, DateTime startTime, DateTime endTime)
         {
             Booking newBooking = new Booking()
