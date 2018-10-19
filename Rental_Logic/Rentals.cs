@@ -78,11 +78,6 @@ namespace Rental_Logic
             Bookings.RemoveAll(b => b.Id == bookingId);
         }
 
-        public void GetCar(Booking booking)          // När kunden kvitterar ut sin hyrbil.
-        {
-            booking.RentalCar.IsRented = true;
-        }
-
         public void ReturnCar(Booking booking)
         {
             if (booking.IsReturned == false && booking.RentalCar.IsRented == true)// IsRented sätts aldrig till True i koden. Behövs den alls? lägger till på rad 84
@@ -110,5 +105,95 @@ namespace Rental_Logic
             return availableCars;
         }
 
+        //All get methods
+        public void GetCustomers()
+        {
+
+        }
+
+        public void GetCustomerById()
+        {
+
+        }
+
+        public void GetCustomersByName()
+        {
+
+        }
+
+        public void GetCustomerByPhoneNumber()
+        {
+
+        }
+
+        public void GetCustomerByEmail()
+        {
+
+        }
+
+        public void GetCustomerFromBooking()
+        {
+
+        }
+
+        public void GetCarByReg()
+        {
+
+        }
+
+        public void GetCarsByBrand()
+        {
+
+        }
+
+        public void GetCarsByYear()
+        {
+            
+        }
+
+        public void GetCarsByModel()
+        {
+
+        }
+
+        public void GetCarsByIsRented()
+        {
+
+        }
+
+        public void GetCarFromBooking()
+        {
+
+        }
+
+        public void GetBookingById()
+        {
+
+        }
+         
+        public void GetBookingsByCar()
+        {
+
+        }
+
+        public void GetBookingsByCustomer()
+        { 
+
+        }
+
+        public void GetBookingsByTime()
+        {
+
+        }
+
+        public void GetBookingsByIsReturned()
+        {
+
+        }
+
+        public void GetCar(Booking booking)          // När kunden kvitterar ut sin hyrbil.
+        {
+            booking.RentalCar.IsRented = true;
+        }
     }
 }
