@@ -109,35 +109,32 @@ namespace Rental_Logic
         //All get methods
         public List<Customer> GetCustomers(string searchString)
         {
-            List<Customer> presentCustomers = Customers.ToList();
-
-            var searchResult = presentCustomers.FindAll(c => c.FirstName == searchString || c.LastName == searchString || c.PhoneNumber == searchString || c.EmailAddress == searchString);
-            return searchResult;
+            return Customers.FindAll(c => c.FirstName.StartsWith(searchString)|| c.LastName.StartsWith(searchString) || c.PhoneNumber.StartsWith(searchString) || c.EmailAddress.StartsWith(searchString));
         }
 
-        public void GetCustomerById()
+        public Customer GetCustomerById(int id)
         {
-
+           return Customers.Find(c => c.Id == id);
         }
 
-        public void GetCustomersByName()
+        public List<Customer> GetCustomersByName(string name)
         {
-
+            return Customers.FindAll(c => c.FirstName == name || c.LastName == name);
         }
 
-        public void GetCustomerByPhoneNumber()
+        public Customer GetCustomerByPhoneNumber(string number)
         {
-
+            return Customers.Find(c => c.PhoneNumber == number);
         }
 
-        public void GetCustomerByEmail()
+        public Customer GetCustomerByEmail(string email)
         {
-
+            return Customers.Find(c => c.EmailAddress == email);
         }
 
-        public void GetCustomerFromBooking()
+        public Customer GetCustomerFromBooking(Booking booking)
         {
-
+            return Customers.Find(c => c.Id == booking.Renter.Id);
         }
 
         public void GetCarByReg()
