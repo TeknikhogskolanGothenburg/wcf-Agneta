@@ -105,10 +105,14 @@ namespace Rental_Logic
             return availableCars;
         }
 
-        //All get methods
-        public void GetCustomers()
-        {
 
+        //All get methods
+        public List<Customer> GetCustomers(string searchString)
+        {
+            List<Customer> presentCustomers = Customers.ToList();
+
+            var searchResult = presentCustomers.FindAll(c => c.FirstName == searchString || c.LastName == searchString || c.PhoneNumber == searchString || c.EmailAddress == searchString);
+            return searchResult;
         }
 
         public void GetCustomerById()
@@ -195,5 +199,6 @@ namespace Rental_Logic
         {
             booking.RentalCar.IsRented = true;
         }
+    
     }
 }
