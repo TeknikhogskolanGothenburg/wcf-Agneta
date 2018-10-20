@@ -167,32 +167,65 @@ namespace Rental_Logic
 
         }
 
-        public void GetBookingById()
+        public Booking GetBookingById(string bookingId)
         {
-
+            return Bookings.Find(b => b.Id == bookingId);
         }
-         
-        public void GetBookingsByCar()
+        
+        public List<Booking> GetBookingsByCar( Car car)
         {
-
+            return Bookings.FindAll(b => b.RentalCar.RegNumber == car.RegNumber);
         }
 
-        public void GetBookingsByCustomer()
-        { 
-
-        }
-
-        public void GetBookingsByTime()
+        public List<Booking> GetBookingsByCustomer(Customer customer)
         {
-
+            return Bookings.FindAll(b => b.Renter.Id == customer.Id);
         }
 
-        public void GetBookingsByIsReturned()
+        //customer overload, most likely not needed
+        public List<Booking> GetBookingsByCustomerEmail(Customer customer)
         {
-
+            return Bookings.FindAll(b => b.Renter.EmailAddress == customer.EmailAddress);
         }
 
-        public void GetCar(Booking booking)          // När kunden kvitterar ut sin hyrbil.
+        public List<Booking> GetBookingsByCustomerEmail(string email)
+        {
+            return Bookings.FindAll(b => b.Renter.EmailAddress == email);
+        }
+
+        //customer overload, most likely not needed
+        public List<Booking> GetBookingsByCustomerPhone(Customer customer) 
+        {
+            return Bookings.FindAll(b => b.Renter.PhoneNumber == customer.EmailAddress);
+        }
+
+        public List<Booking> GetBookingsByCustomerPhone(string phone)
+        {
+            return Bookings.FindAll(b => b.Renter.PhoneNumber == phone);
+        }
+
+        //have to test this one later
+        public List<Booking> GetBookingsByTime(DateTime start, DateTime end)
+        {
+            var bookings = Bookings.ToList();
+            foreach (var booking in bookings) {
+                {
+                    if (start < booking.StartTime && end > booking.StartTime)
+                    {
+                        bookings.Remove(booking);
+                    }
+                }
+            }
+            return bookings;
+        }
+
+        public List<Booking> GetBookingsByIsNotReturned()
+        {
+            return Bookings.FindAll(b => b.IsReturned == false);
+        }
+
+        // När kunden kvitterar ut sin hyrbil.
+        public void GetCar(Booking booking) 
         {
             booking.RentalCar.IsRented = true;
         }
