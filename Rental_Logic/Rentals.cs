@@ -67,14 +67,14 @@ namespace Rental_Logic
                 Renter = renter,
                 StartTime = startTime,
                 EndTime = endTime,
-                IsReturned = false                              
+                IsReturned = false
 
             };
             Bookings.Add(newBooking);
         }
 
         public void RemoveBooking(string bookingId)
-        { 
+        {
             Bookings.RemoveAll(b => b.Id == bookingId);
         }
 
@@ -92,29 +92,28 @@ namespace Rental_Logic
             }
         }
 
-        public List<Car> CheckDate( DateTime startDate, DateTime endDate)
+        public List<Car> CheckDate(DateTime startDate, DateTime endDate)
         {
             List<Car> availableCars = Cars.ToList();
             foreach (var booking in Bookings)
             {
                 if (startDate < booking.StartTime && endDate > booking.StartTime)
                 {
-                    availableCars.RemoveAll(b => b.RegNumber == booking.RentalCar.RegNumber);                 
-                }        
+                    availableCars.RemoveAll(b => b.RegNumber == booking.RentalCar.RegNumber);
+                }
             }
             return availableCars;
         }
 
-
         //All get methods
         public List<Customer> GetCustomers(string searchString)
         {
-            return Customers.FindAll(c => c.FirstName.StartsWith(searchString)|| c.LastName.StartsWith(searchString) || c.PhoneNumber.StartsWith(searchString) || c.EmailAddress.StartsWith(searchString));
+            return Customers.FindAll(c => c.FirstName.StartsWith(searchString) || c.LastName.StartsWith(searchString) || c.PhoneNumber.StartsWith(searchString) || c.EmailAddress.StartsWith(searchString));
         }
 
         public Customer GetCustomerById(int id)
         {
-           return Customers.Find(c => c.Id == id);
+            return Customers.Find(c => c.Id == id);
         }
 
         public List<Customer> GetCustomersByName(string name)
@@ -137,42 +136,42 @@ namespace Rental_Logic
             return Customers.Find(c => c.Id == booking.Renter.Id);
         }
 
-        public void GetCarByReg()
+        public Car GetCarByReg(string regNumber)
         {
-
+            return Cars.Find(c => c.RegNumber == regNumber);
         }
 
-        public void GetCarsByBrand()
+        public List<Car> GetCarsByBrand(string brand)
         {
-
+            return Cars.FindAll(c => c.Brand == brand);
         }
 
-        public void GetCarsByYear()
+        public List<Car> GetCarsByYear(int year)
         {
-            
+            return Cars.FindAll(c => c.Year == year);
         }
 
-        public void GetCarsByModel()
+        public List<Car> GetCarsByModel(string model)
         {
-
+            return Cars.FindAll(c => c.Model == model);
         }
 
-        public void GetCarsByIsRented()
+        public List<Car> GetCarsByIsRented()
         {
-
+            return Cars.FindAll(c => c.IsRented == true);
         }
 
-        public void GetCarFromBooking()
+        public Car GetCarFromBooking(Booking booking)
         {
-
+            return Cars.Find(c => c.IsRented == true && booking.Id == booking.Id);
         }
 
         public Booking GetBookingById(string bookingId)
         {
             return Bookings.Find(b => b.Id == bookingId);
         }
-        
-        public List<Booking> GetBookingsByCar( Car car)
+
+        public List<Booking> GetBookingsByCar(Car car)
         {
             return Bookings.FindAll(b => b.RentalCar.RegNumber == car.RegNumber);
         }
@@ -194,7 +193,7 @@ namespace Rental_Logic
         }
 
         //customer overload, most likely not needed
-        public List<Booking> GetBookingsByCustomerPhone(Customer customer) 
+        public List<Booking> GetBookingsByCustomerPhone(Customer customer)
         {
             return Bookings.FindAll(b => b.Renter.PhoneNumber == customer.EmailAddress);
         }
@@ -208,7 +207,8 @@ namespace Rental_Logic
         public List<Booking> GetBookingsByTime(DateTime start, DateTime end)
         {
             var bookings = Bookings.ToList();
-            foreach (var booking in bookings) {
+            foreach (var booking in bookings)
+            {
                 {
                     if (start < booking.StartTime && end > booking.StartTime)
                     {
@@ -225,10 +225,10 @@ namespace Rental_Logic
         }
 
         // När kunden kvitterar ut sin hyrbil.
-        public void GetCar(Booking booking) 
+        public void GetCar(Booking booking)
         {
             booking.RentalCar.IsRented = true;
         }
-    
+
     }
 }
