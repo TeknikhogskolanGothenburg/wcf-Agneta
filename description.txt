@@ -1,0 +1,44 @@
+Agneta Gustafsson
+
+
+Arkitektur:
+
+Min tanke var att dela in projektet i nedan kontrakt:
+
+Carservice, där kunden själv kan registrera sin profil och boka bil. 
+Samt ett identiskt, lite utökat, där ett Callcenter skulle kunna hjälpa sin kund med ovanstående. 
+Tjänsterna skulle heta likadant för båda, men overloadas genom att Callcenter skulle kunna söka på fler properties än bara en Int, 
+som kunden själv fick tillgång till. 
+Jag skulle då sära på dem genom att namnge dem i [OperationContract (Name-fältet)].
+
+Detta frångick jag senare till att bara ha en gemensam tjänst per typ, för att det inte skulle blir för rörigt. 
+Därför finns det nu flera tjänster med Name, där det egentligen inte hade behövts.
+
+Backoffice, som hade hand om företags- och säkerhetsrelaterade saker, som att lägga till och ta bilar ur bruk, 
+avgöra när ett kundupplägg får raderas.
+
+Restservice, som skulle likna en webuppkopplad pekskärm, 
+där kunden får ett välkomstmeddelande och sen kan trycka för att hämta ut samt återlämna sin bil (checka in/ut). 
+Jag lade även till en kundregistrering, mest för att kriterierna krävde en POST och jag visste inte vad jag skulle välja. 
+Men det ingår inte i arkitekturen. 
+Bara en GET och två PUT.
+
+Jag satte exceptions på några ställen som skulle fånga upp när licensnyckeln var fel samt där användarinput kunde bli felaktig,
+för att fånga upp det. Satte det dock inte på alla ställen, som man hade gjort om det var till produktion, utan bara som exempel.
+
+Jag valde net.Tcp binding till Backoffice kopplat med Transport-security. Mest för att jag kände att det var kommunikation inom företaget,
+och att det då inte behövdes Message-security. Valde även bort okrypterat - tog bara signad. Kanske hade räckt med None?
+För Carservice valde jag wsHttpBinding ihop med dess default - Message security. Valde ProtectionLevel: EncryptAndSign. 
+Detta för att mesta kommunikationen sker över webben från olika platser och olika mellanlandningar.
+
+Det finns en bugg, som jag ännu inte valt om jag ska rätta till, eller bara beskriva här, så det mer rör backend.
+Jag har listor som är static, för att kunna hålla infon kvar i minnet när nya serviceobjekt skickas in.
+Detta funkade bra till jag infogade en ny host. Då blev det som två parallella verksamheter, istället för en synkad.
+Det rättar man genom att göra klassen static. Har inte gjort det än.
+
+
+
+
+
+• Om du provat en sak men inte fått den att fungera som du vill och gjort något annat 
+• Och andra aktiva val du har gjort 
