@@ -112,8 +112,12 @@ namespace WCFCarRentalService
                 throw new WebFaultException<string>("wrong license key" , HttpStatusCode.NotFound);
 
             Customer cust = r.GetCustomerById(request.CustomerId);
-            try
+            if (cust == null)
             {
+                throw new FaultException("The CustomerId : " + request.CustomerId + " is not in our database.");
+                //Tänkte här att klienten kan fånga upp: faultexception.Message; när kund sökes som inte finns.
+
+            }
                 cust.Id = Convert.ToString(cust.Id);
                 cust.FirstName = Convert.ToString(cust.FirstName);
                 cust.LastName = Convert.ToString(cust.LastName);
@@ -122,13 +126,6 @@ namespace WCFCarRentalService
          
 
                 return new CustomerInfo(cust);
-
-            }
-            catch (FaultException)
-            {
-                throw new FaultException("The CustomerId : " + request.CustomerId + " is not in our database.");
-                 //Tänkte här att klienten kan fånga upp: faultexception.Message; när kund sökes som inte finns.
-            }
         }
 
         public Booking GetBooking(string id)

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Rental_Logic
 {
-    public class Rentals
+    public  class Rentals
     {
         private static readonly object customersLock = new object();
         public static List<Car> Cars = new List<Car>();
