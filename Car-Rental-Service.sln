@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rental_Data", "Rental_Data\Rental_Data.csproj", "{99337688-08BD-49FF-917D-239EC53A1FD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rental_Data", "Rental_Data\Rental_Data.csproj", "{99337688-08BD-49FF-917D-239EC53A1FD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rental_Logic", "Rental_Logic\Rental_Logic.csproj", "{AC5AB8BB-C776-43AA-A1C0-FB68B9CFF8B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rental_Logic", "Rental_Logic\Rental_Logic.csproj", "{AC5AB8BB-C776-43AA-A1C0-FB68B9CFF8B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFCarRentalService", "WCFCarRentalService\WCFCarRentalService.csproj", "{AF918774-F097-4C4D-8169-A9BA3569490A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalServiceHost", "CarRentalServiceHost\CarRentalServiceHost.csproj", "{8CDAB51C-0990-4C36-85E1-1BBA5ADAFD9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestHost", "ConsoleApp1\RestHost.csproj", "{78953DEA-D0F8-4782-B7D2-735DD94DFF3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{AC5AB8BB-C776-43AA-A1C0-FB68B9CFF8B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC5AB8BB-C776-43AA-A1C0-FB68B9CFF8B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC5AB8BB-C776-43AA-A1C0-FB68B9CFF8B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF918774-F097-4C4D-8169-A9BA3569490A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF918774-F097-4C4D-8169-A9BA3569490A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF918774-F097-4C4D-8169-A9BA3569490A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF918774-F097-4C4D-8169-A9BA3569490A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CDAB51C-0990-4C36-85E1-1BBA5ADAFD9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CDAB51C-0990-4C36-85E1-1BBA5ADAFD9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CDAB51C-0990-4C36-85E1-1BBA5ADAFD9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CDAB51C-0990-4C36-85E1-1BBA5ADAFD9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78953DEA-D0F8-4782-B7D2-735DD94DFF3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78953DEA-D0F8-4782-B7D2-735DD94DFF3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78953DEA-D0F8-4782-B7D2-735DD94DFF3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78953DEA-D0F8-4782-B7D2-735DD94DFF3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
