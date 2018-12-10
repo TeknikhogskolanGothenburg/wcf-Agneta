@@ -30,6 +30,7 @@ Jag valde net.Tcp binding till Backoffice kopplat med Transport-security. Mest f
 och att det då inte behövdes Message-security. Valde även bort krypterat - tog bara signad. Kanske hade räckt med None?
 För Carservice valde jag wsHttpBinding ihop med dess default - Message security. Valde ProtectionLevel: EncryptAndSign. 
 Detta för att mesta kommunikationen sker över webben från olika platser och olika mellanlandningar.
+För Rest - webHttpBinding, med default security-None.
 
 Det finns en bugg, som jag ännu inte valt om jag ska rätta till, eller bara beskriva här, så det mer rör backend.
 Jag har listor som är static, för att kunna hålla infon kvar i minnet när nya serviceobjekt skickas in.
