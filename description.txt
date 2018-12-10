@@ -5,40 +5,40 @@ Arkitektur:
 
 Min tanke var att dela in projektet i nedan kontrakt:
 
-Carservice, där kunden själv kan registrera sin profil och boka bil. 
-Samt ett identiskt, lite utökat, där ett Callcenter skulle kunna hjälpa sin kund med ovanstående. 
-Tjänsterna skulle heta likadant för båda, men overloadas genom att Callcenter skulle kunna söka på fler properties än bara en Int, 
-som kunden själv fick tillgång till. 
-Jag skulle då sära på dem genom att namnge dem i [OperationContract (Name-fältet)].
+Carservice, dÃ¤r kunden sjÃ¤lv kan registrera sin profil och boka bil. 
+Samt ett identiskt, lite utÃ¶kat, dÃ¤r ett Callcenter skulle kunna hjÃ¤lpa sin kund med ovanstÃ¥ende. 
+TjÃ¤nsterna skulle heta likadant fÃ¶r bÃ¥da, men overloadas genom att Callcenter skulle kunna sÃ¶ka pÃ¥ fler properties Ã¤n bara en Int, 
+som kunden sjÃ¤lv fick tillgÃ¥ng till. 
+Jag skulle dÃ¥ sÃ¤ra pÃ¥ dem genom att namnge dem i [OperationContract (Name-fÃ¤ltet)].
 
-Detta frångick jag senare till att bara ha en gemensam tjänst per typ, för att det inte skulle blir för rörigt. 
-Därför finns det nu flera tjänster med Name, där det egentligen inte hade behövts.
+Detta frÃ¥ngick jag senare till att bara ha en gemensam tjÃ¤nst per typ, fÃ¶r att det inte skulle blir fÃ¶r rÃ¶rigt. 
+DÃ¤rfÃ¶r finns det nu flera tjÃ¤nster med Name, dÃ¤r det egentligen inte hade behÃ¶vts.
 
-Backoffice, som hade hand om företags- och säkerhetsrelaterade saker, som att lägga till och ta bilar ur bruk, 
-avgöra när ett kundupplägg får raderas.
+Backoffice, som hade hand om fÃ¶retags- och sÃ¤kerhetsrelaterade saker, som att lÃ¤gga till och ta bilar ur bruk, 
+avgÃ¶ra nÃ¤r ett kundupplÃ¤gg fÃ¥r raderas.
 
-Restservice, som skulle likna en webuppkopplad pekskärm, 
-där kunden får ett välkomstmeddelande och sen kan trycka för att hämta ut samt återlämna sin bil (checka in/ut). 
-Jag lade även till en kundregistrering, mest för att kriterierna krävde en POST och jag visste inte vad jag skulle välja. 
-Men det ingår inte i arkitekturen. 
-Bara en GET och två PUT.
+Restservice, som skulle likna en webuppkopplad pekskÃ¤rm, 
+dÃ¤r kunden fÃ¥r ett vÃ¤lkomstmeddelande och sen kan trycka fÃ¶r att hÃ¤mta ut samt Ã¥terlÃ¤mna sin bil (checka in/ut). 
+Jag lade Ã¤ven till en kundregistrering, mest fÃ¶r att kriterierna krÃ¤vde en POST och jag visste inte vad jag skulle vÃ¤lja. 
+Men det ingÃ¥r inte i arkitekturen. 
+Bara en GET och tvÃ¥ PUT.
 
-Jag satte exceptions på några ställen som skulle fånga upp när licensnyckeln var fel samt där användarinput kunde bli felaktig,
-för att fånga upp det. Satte det dock inte på alla ställen, som man hade gjort om det var till produktion, utan bara som exempel.
+Jag satte exceptions pÃ¥ nÃ¥gra stÃ¤llen som skulle fÃ¥nga upp nÃ¤r licensnyckeln var fel samt dÃ¤r anvÃ¤ndarinput kunde bli felaktig,
+fÃ¶r att fÃ¥nga upp det. Satte det dock inte pÃ¥ alla stÃ¤llen, som man hade gjort om det var till produktion, utan bara som exempel.
 
-Jag valde net.Tcp binding till Backoffice kopplat med Transport-security. Mest för att jag kände att det var kommunikation inom företaget,
-och att det då inte behövdes Message-security. Valde även bort okrypterat - tog bara signad. Kanske hade räckt med None?
-För Carservice valde jag wsHttpBinding ihop med dess default - Message security. Valde ProtectionLevel: EncryptAndSign. 
-Detta för att mesta kommunikationen sker över webben från olika platser och olika mellanlandningar.
+Jag valde net.Tcp binding till Backoffice kopplat med Transport-security. Mest fÃ¶r att jag kÃ¤nde att det var kommunikation inom fÃ¶retaget,
+och att det dÃ¥ inte behÃ¶vdes Message-security. Valde Ã¤ven bort krypterat - tog bara signad. Kanske hade rÃ¤ckt med None?
+FÃ¶r Carservice valde jag wsHttpBinding ihop med dess default - Message security. Valde ProtectionLevel: EncryptAndSign. 
+Detta fÃ¶r att mesta kommunikationen sker Ã¶ver webben frÃ¥n olika platser och olika mellanlandningar.
 
-Det finns en bugg, som jag ännu inte valt om jag ska rätta till, eller bara beskriva här, så det mer rör backend.
-Jag har listor som är static, för att kunna hålla infon kvar i minnet när nya serviceobjekt skickas in.
-Detta funkade bra till jag infogade en ny host. Då blev det som två parallella verksamheter, istället för en synkad.
-Det rättar man genom att göra klassen static. Har inte gjort det än.
-
-
+Det finns en bugg, som jag Ã¤nnu inte valt om jag ska rÃ¤tta till, eller bara beskriva hÃ¤r, sÃ¥ det mer rÃ¶r backend.
+Jag har listor som Ã¤r static, fÃ¶r att kunna hÃ¥lla infon kvar i minnet nÃ¤r nya serviceobjekt skickas in.
+Detta funkade bra till jag infogade en ny host. DÃ¥ blev det som tvÃ¥ parallella verksamheter, istÃ¤llet fÃ¶r en synkad.
+Det rÃ¤ttar man genom att gÃ¶ra klassen static. Har inte gjort det Ã¤n.
 
 
 
-• Om du provat en sak men inte fått den att fungera som du vill och gjort något annat 
-• Och andra aktiva val du har gjort 
+
+
+â€¢ Om du provat en sak men inte fÃ¥tt den att fungera som du vill och gjort nÃ¥got annat 
+â€¢ Och andra aktiva val du har gjort 
