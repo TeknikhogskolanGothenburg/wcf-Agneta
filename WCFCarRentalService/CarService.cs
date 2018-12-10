@@ -89,21 +89,21 @@ namespace WCFCarRentalService
 
         public CarInfo GetCar(CarRequest request)
         {
+            if (request.LicenseKey != "CarSecret123")
+                throw new WebFaultException<string>("wrong license key", HttpStatusCode.NotFound);
+
             Car car = r.GetCar(request.CarId);
 
-            try
+            if(car == null)
             {
+                throw new FaultException("Car " + request.CarId + " doesn't exist");
+            }
+
                 car.Brand = Convert.ToString(car.Brand);
                 car.Model = Convert.ToString(car.Model);
                 car.Year = Convert.ToInt32(car.Year);
                 car.IsRented = Convert.ToBoolean(car.IsRented);
                 return new CarInfo(car);
-            }
-            catch (FaultException)
-            {
-                throw new FaultException("Car " + request.CarId + " doesn't exist");
-                //Klienten fångar upp ("Car " + request.CarId + " doesn't exist");
-            }
         }
 
         public CustomerInfo GetCustomer(CustomerRequest request)
@@ -130,19 +130,13 @@ namespace WCFCarRentalService
 
         public Booking GetBooking(string id)
         {
-            try
-            {
                 Booking booking = r.GetBookingById(id);
-                return booking;
-            }
-            catch (NullReferenceException)
-            {
-                throw new FaultException();
-               
-                // Tänkte här att klienten kan fånga upp genom att skriva:"Fel bokningsnummer eller kundnummer. Försök igen.";
-            }
-        }
+            if (booking == null)
 
+                throw new NullReferenceException("Fel bokningsnummer eller kundnummer. Försök igen.");
+
+            return booking;
+        }
 
                 //Här börjar REST-Metoderna
         public string BookingDisplay()
