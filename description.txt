@@ -1,6 +1,5 @@
 Agneta Gustafsson
 
-
 Arkitektur:
 
 Min tanke var att dela in projektet i nedan kontrakt:
@@ -27,19 +26,27 @@ Jag satte exceptions på några ställen som skulle fånga upp när licensnyckel
 för att fånga upp det. Satte det dock inte på alla ställen, som man hade gjort om det var till produktion, utan bara som exempel.
 
 Jag valde net.Tcp binding till Backoffice kopplat med Transport-security. Mest för att jag kände att det var kommunikation inom företaget,
-och att det då inte behövdes Message-security. Valde även bort krypterat - tog bara signad. Kanske hade räckt med None?
+och att det då inte behövdes Message-security. 
 För Carservice valde jag wsHttpBinding ihop med dess default - Message security. Valde ProtectionLevel: EncryptAndSign. 
 Detta för att mesta kommunikationen sker över webben från olika platser och olika mellanlandningar.
 För Rest - webHttpBinding, med default security-None.
+För Mex - mexHttpBinding, för att det är standardförfarande.
+
+Valde bort krypterat för Car - tog bara signad. Tänkte att den inte innehöll några känsliga uppgifter.
+Valde ProtectionLevel: EncryptAndSign, för Customer. Där är det privat information som ska skyddas.
+Lät Booking ha kvar None, då jag inte förberett någon BookingRequest i denna lösning. Vid riktig implementation hade jag valt EncryptAndSign.
 
 Det finns en bugg, som jag ännu inte valt om jag ska rätta till, eller bara beskriva här, så det mer rör backend.
 Jag har listor som är static, för att kunna hålla infon kvar i minnet när nya serviceobjekt skickas in.
 Detta funkade bra till jag infogade en ny host. Då blev det som två parallella verksamheter, istället för en synkad.
 Det rättar man genom att göra klassen static. Har inte gjort det än.
 
+I AppConfigen har jag kommenterat ut lite data. Har noterat där varför.
+
+Provade först att göra RestServicen som ytterligare en endpoint i min CarRentalHost, men kunde inte tolka vissa felmeddelanden jag fick.
+Gjorde då om det till en egen Host (vilket var det vi skulle gjort från början...).
+
+Andra veckan var jag i valet och kvalet om jag skulle strunta i min <List>-variant och ta SQL som de andra. Började förbereda lite för det men valde sen att behålla det. Mängden kod blir inte lika mycket för denna variant som om jag skulle exporterat det till SQL, men eftersom du hade detta som valmöljighet antar jag att det är ok.
 
 
 
-
-• Om du provat en sak men inte fått den att fungera som du vill och gjort något annat 
-• Och andra aktiva val du har gjort 
