@@ -46,7 +46,7 @@ namespace Rental_Data
         [MessageBodyMember(Order = 5, Namespace = "http://tempuri.org/Booking")]
         public DateTime EndTime { get; set; }
 
-        [MessageBodyMember(Order = 6, Namespace = "http://tempuri.org/Booking")]  // ev ska denna bodymember bort.
+       // [MessageBodyMember(Order = 6, Namespace = "http://tempuri.org/Booking")]  // ev ska denna bodymember bort.
         public bool IsReturned { get; set; }
     }
 
@@ -63,7 +63,7 @@ namespace Rental_Data
         public DateTime StartTime { get; set; }
         [DataMember(Order = 5)]
         public DateTime EndTime { get; set; }
-        [DataMember(Order = 6)]
+       // [DataMember(Order = 6)]  Tar bort denna så den inte syns i WSDLn då den inte hör till det klienten ska ange.
         public bool IsReturned { get; set; }
     }
 }
